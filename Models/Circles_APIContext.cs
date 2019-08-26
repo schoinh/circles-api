@@ -10,7 +10,7 @@ namespace Circles_API.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder
-                .UseMySql(@"server=localhost;user id=root;password=" + EnvironmentVariables.MySQLPW + ".;port=3306;database=circles;");
+                .UseMySql(@"server=localhost;user id=root;password=" + EnvironmentVariables.MySQLPW + ";port=3306;database=circles;");
 
         public Circles_APIContext(DbContextOptions options) : base(options)
         {
