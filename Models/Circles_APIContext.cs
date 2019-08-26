@@ -7,6 +7,7 @@ namespace Circles_API.Models
     {
         public DbSet<Circle> Circles { get; set; }
         public DbSet<Userprofile> Userprofiles { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder
