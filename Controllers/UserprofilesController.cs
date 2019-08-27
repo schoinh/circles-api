@@ -13,86 +13,195 @@ namespace Circles_API.Controllers
     {
         private Circles_APIContext _db = new Circles_APIContext();
         private static int _currentPage = 1;    // Must be 1
-        private static int _entriesPerPage = 4;     // This can be changed
+        private static int _entriesPerPage = 2;     // This can be changed
         private static int _totalNumEntries;
         private static int _totalPages;
         private static int _prevPage;
         private static int _nextPage;
 
-        // GET api/userprofiles
+        // GET api/userprofiles/first (first page)
         // Optional query parameter keys: gender, location
-        [HttpGet]
-        public ActionResult<IEnumerable<Userprofile>> GetAll(string gender = null, string location = null)
+        [HttpGet("first")]
+        public ActionResult<IEnumerable<Userprofile>> GetFirstPage(string gender = null, string location = null)
         {
             if (gender == null && location == null)
             {
-                return _db.Userprofiles.OrderBy(x => x.Name).ToList();
+                _currentPage = 1;
+                var allResults = _db.Userprofiles.ToList();
+                _totalNumEntries = allResults.Count();
+                _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
+                return _db.Userprofiles
+                    .OrderBy(x => x.Name)
+                    .Take(_entriesPerPage).ToList();
             }
             else if (gender == null)
             {
+                _currentPage = 1;
+                var allResults = _db.Userprofiles.Where(x => x.Location == location).ToList();
+                _totalNumEntries = allResults.Count();
+                _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .Where(x => x.Location == location)
-                    .OrderBy(x => x.Name).ToList();
+                    .OrderBy(x => x.Name)
+                    .Take(_entriesPerPage).ToList();
             }
             else if (location == null)
             {
+                _currentPage = 1;
+                var allResults = _db.Userprofiles.Where(x => x.Gender == gender).ToList();
+                _totalNumEntries = allResults.Count();
+                _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .Where(x => x.Gender == gender)
-                    .OrderBy(x => x.Name).ToList();
+                    .OrderBy(x => x.Name)
+                    .Take(_entriesPerPage).ToList();
             }
             else
             {
-                return _db.Userprofiles
-                    .Where(x => x.Location == location)
+                _currentPage = 1;
+                var allResults = _db.Userprofiles
                     .Where(x => x.Gender == gender)
-                    .OrderBy(x => x.Name).ToList();
+                    .Where(x => x.Location == location).ToList();
+                _totalNumEntries = allResults.Count();
+                _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
+                return _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name)
+                    .Take(_entriesPerPage).ToList();
             }
-        }
-
-        // GET api/userprofiles/first (first page)
-        [HttpGet("first")]
-        public ActionResult<IEnumerable<Userprofile>> GetFirstPage()
-        {
-            var allUserprofiles = _db.Userprofiles.ToList();
-            _totalNumEntries = allUserprofiles.Count();
-            _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
-            return _db.Userprofiles
-                .OrderBy(x => x.Name)
-                .Take(_entriesPerPage).ToList();
         }
 
         // GET api/userprofiles/next (next page)
         [HttpGet("next")]
-        public ActionResult<IEnumerable<Userprofile>> GetNextPage()
+        public ActionResult<IEnumerable<Userprofile>> GetNextPage(string gender = null, string location = null)
         {
-            _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
-            var output = _db.Userprofiles
-                .OrderBy(x => x.Name)
-                .Skip((_nextPage - 1) * _entriesPerPage)
-                .Take(_entriesPerPage)
-                .ToList();
-            if (_currentPage < _totalPages)
+            if (gender == null && location == null)
             {
-                _currentPage += 1;
+                _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
+                var output = _db.Userprofiles
+                    .OrderBy(x => x.Name)
+                    .Skip((_nextPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage < _totalPages)
+                {
+                    _currentPage += 1;
+                }
+                return output;
             }
-            return output;
+            else if (gender == null)
+            {
+                _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
+                var output = _db.Userprofiles
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name)
+                    .Skip((_nextPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage < _totalPages)
+                {
+                    _currentPage += 1;
+                }
+                return output;
+            }
+            else if (location == null)
+            {
+                _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
+                var output = _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .OrderBy(x => x.Name)
+                    .Skip((_nextPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage < _totalPages)
+                {
+                    _currentPage += 1;
+                }
+                return output;
+            }
+            else
+            {
+                _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
+                var output = _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name)
+                    .Skip((_nextPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage < _totalPages)
+                {
+                    _currentPage += 1;
+                }
+                return output;
+            }
         }
 
         // GET api/userprofiles/prev (previous page)
         [HttpGet("prev")]
-        public ActionResult<IEnumerable<Userprofile>> GetPrevPage()
+        public ActionResult<IEnumerable<Userprofile>> GetPrevPage(string gender = null, string location = null)
         {
-            _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
-            var output = _db.Userprofiles
-                .OrderBy(x => x.Name)
-                .Skip((_prevPage - 1) * _entriesPerPage)
-                .Take(_entriesPerPage)
-                .ToList();
-            if (_currentPage > 1)
+            if (gender == null && location == null)
             {
-                _currentPage -= 1;
+                _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
+                var output = _db.Userprofiles
+                    .OrderBy(x => x.Name)
+                    .Skip((_prevPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage > 1)
+                {
+                    _currentPage -= 1;
+                }
+                return output;
             }
-            return output;
+            else if (gender == null)
+            {
+                _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
+                var output = _db.Userprofiles
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name)
+                    .Skip((_prevPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage > 1)
+                {
+                    _currentPage -= 1;
+                }
+                return output;
+            }
+            else if (location == null)
+            {
+                _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
+                var output = _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .OrderBy(x => x.Name)
+                    .Skip((_prevPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage > 1)
+                {
+                    _currentPage -= 1;
+                }
+                return output;
+            }
+            else
+            {
+                _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
+                var output = _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name)
+                    .Skip((_prevPage - 1) * _entriesPerPage)
+                    .Take(_entriesPerPage)
+                    .ToList();
+                if (_currentPage > 1)
+                {
+                    _currentPage -= 1;
+                }
+                return output;
+            }
         }
 
         // GET api/userprofiles/5 (retrieve a specific userprofile)
