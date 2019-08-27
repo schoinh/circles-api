@@ -29,52 +29,6 @@ namespace Circles_API.Controllers
                 .OrderBy(x => x.Name).ToList();
         }
 
-        // GET api/tags/first (first page)
-        [HttpGet("first")]
-        public ActionResult<IEnumerable<Tag>> GetFirstPage()
-        {
-            var allTags = _db.Tags.ToList();
-            _totalNumEntries = allTags.Count();
-            _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
-            return _db.Tags
-                .OrderBy(x => x.Name)
-                .Take(_entriesPerPage).ToList();
-        }
-
-        // GET api/tags/next (next page)
-        [HttpGet("next")]
-        public ActionResult<IEnumerable<Tag>> GetNextPage()
-        {
-            _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
-            var output = _db.Tags
-                .OrderBy(x => x.Name)
-                .Skip((_nextPage - 1) * _entriesPerPage)
-                .Take(_entriesPerPage)
-                .ToList();
-            if (_currentPage < _totalPages)
-            {
-                _currentPage += 1;
-            }
-            return output;
-        }
-
-        // GET api/tags/prev (previous page)
-        [HttpGet("prev")]
-        public ActionResult<IEnumerable<Tag>> GetPrevPage()
-        {
-            _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
-            var output = _db.Tags
-                .OrderBy(x => x.Name)
-                .Skip((_prevPage - 1) * _entriesPerPage)
-                .Take(_entriesPerPage)
-                .ToList();
-            if (_currentPage > 1)
-            {
-                _currentPage -= 1;
-            }
-            return output;
-        }
-
         // GET api/tags/5 (retrieve a specific tag)
         [HttpGet("{id}")]
         public ActionResult<Tag> Get(int id)
