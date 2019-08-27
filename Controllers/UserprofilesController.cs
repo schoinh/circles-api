@@ -12,18 +12,41 @@ namespace Circles_API.Controllers
     public class UserprofilesController : ControllerBase
     {
         private Circles_APIContext _db = new Circles_APIContext();
-        private static int _currentPage = 1;
-        private static int _entriesPerPage = 4;
+        private static int _currentPage = 1;    // Must be 1
+        private static int _entriesPerPage = 4;     // This can be changed
         private static int _totalNumEntries;
         private static int _totalPages;
         private static int _prevPage;
         private static int _nextPage;
 
         // GET api/userprofiles
+        // Optional query parameter keys: gender, location
         [HttpGet]
-        public ActionResult<IEnumerable<Userprofile>> GetAll()
+        public ActionResult<IEnumerable<Userprofile>> GetAll(string gender = null, string location = null)
         {
-            return _db.Userprofiles.OrderBy(x => x.Name).ToList();
+            if (gender == null && location == null)
+            {
+                return _db.Userprofiles.OrderBy(x => x.Name).ToList();
+            }
+            else if (gender == null)
+            {
+                return _db.Userprofiles
+                    .Where(x => x.Location == location)
+                    .OrderBy(x => x.Name).ToList();
+            }
+            else if (location == null)
+            {
+                return _db.Userprofiles
+                    .Where(x => x.Gender == gender)
+                    .OrderBy(x => x.Name).ToList();
+            }
+            else
+            {
+                return _db.Userprofiles
+                    .Where(x => x.Location == location)
+                    .Where(x => x.Gender == gender)
+                    .OrderBy(x => x.Name).ToList();
+            }
         }
 
         // GET api/userprofiles/first (first page)
