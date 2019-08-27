@@ -108,9 +108,9 @@ namespace Circles_API.Controllers
             _db.SaveChanges();
         }
 
-        // POST api/circles/adduserprofile
-        [HttpPost("adduserprofile/{userprofileId}/{circleId}")]
-        public void AddUserprofile(int userprofileId, int circleId)
+        // POST api/circles/1/adduser/3
+        [HttpPost("{circleId}/adduser/{userprofileId}")]
+        public void AddUserprofile(int circleId, int userprofileId)
         {
             _db.CircleUserprofiles.Add(new CircleUserprofile() { CircleId = circleId, UserprofileId = userprofileId });
             //var circleToModify = _db.Userprofiles.Where(x => x.UserprofileId == userprofileId);
