@@ -12,12 +12,6 @@ namespace Circles_API.Controllers
     public class TagsController : ControllerBase
     {
         private Circles_APIContext _db = new Circles_APIContext();
-        private static int _currentPage = 1;
-        private static int _entriesPerPage = 20;
-        private static int _totalNumEntries;
-        private static int _totalPages;
-        private static int _prevPage;
-        private static int _nextPage;
 
         // GET api/tags
         [HttpGet]
@@ -46,23 +40,5 @@ namespace Circles_API.Controllers
             _db.Tags.Add(tag);
             _db.SaveChanges();
         }
-
-        // // PUT api/tags/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] Tag tag)
-        // {
-        //     tag.TagId = id;
-        //     _db.Entry(tag).State = EntityState.Modified;
-        //     _db.SaveChanges();
-        // }
-
-        // // DELETE api/tags/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        //     var tagToDelete = _db.Tags.FirstOrDefault(x => x.TagId == id);
-        //     _db.Tags.Remove(tagToDelete);
-        //     _db.SaveChanges();
-        // }
     }
 }

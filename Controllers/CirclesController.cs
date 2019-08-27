@@ -12,8 +12,8 @@ namespace Circles_API.Controllers
     public class CirclesController : ControllerBase
     {
         private Circles_APIContext _db = new Circles_APIContext();
-        private static int _currentPage = 1;
-        private static int _entriesPerPage = 4;
+        private static int _currentPage = 1;    // Must be 1
+        private static int _entriesPerPage = 4;     // This can be changed
         private static int _totalNumEntries;
         private static int _totalPages;
         private static int _prevPage;
