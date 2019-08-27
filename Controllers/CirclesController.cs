@@ -76,17 +76,6 @@ namespace Circles_API.Controllers
         [HttpGet("{id}")]
         public ActionResult<Circle> Get(int id)
         {
-            
-            var circle = _db.Circles
-                .Include(x => x.Userprofiles)
-                .ThenInclude(join => join.Userprofile)
-                .FirstOrDefault(x => x.CircleId == id);
-
-            for(int i = 0; i < 15; i++)
-            {
-            Console.WriteLine(circle.Userprofiles.ToList()[0].Userprofile.Name);
-            Console.WriteLine(circle);
-            }
             return _db.Circles
                 .Include(x => x.Userprofiles)
                 .ThenInclude(join => join.Userprofile)
