@@ -76,7 +76,10 @@ namespace Circles_API.Controllers
         [HttpGet("{id}")]
         public ActionResult<Userprofile> Get(int id)
         {
-            return _db.Userprofiles.FirstOrDefault(x => x.UserprofileId == id);
+            return _db.Userprofiles
+                // .Include(x => x.Tags)
+                // .ThenInclude(join => join.Tag)
+                .FirstOrDefault(x => x.UserprofileId == id);
         }
 
         // POST api/userprofiles
@@ -107,7 +110,7 @@ namespace Circles_API.Controllers
 
         // POST api/userprofiles/1/tags/3
         [HttpPost("{userprofileId}/tags/{tagId}")]
-        public void AddUserprofile(int userprofileId, int tagId)
+        public void AddTag(int userprofileId, int tagId)
         {
             _db.TagUserprofiles.Add(new TagUserprofile() { TagId = tagId, UserprofileId = userprofileId });
             //var circleToModify = _db.Userprofiles.Where(x => x.UserprofileId == userprofileId);
