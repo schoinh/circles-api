@@ -104,5 +104,15 @@ namespace Circles_API.Controllers
             _db.Userprofiles.Remove(userprofileToDelete);
             _db.SaveChanges();
         }
+
+        // POST api/userprofiles/1/tags/3
+        [HttpPost("{userprofileId}/tags/{tagId}")]
+        public void AddUserprofile(int userprofileId, int tagId)
+        {
+            _db.TagUserprofiles.Add(new TagUserprofile() { TagId = tagId, UserprofileId = userprofileId });
+            //var circleToModify = _db.Userprofiles.Where(x => x.UserprofileId == userprofileId);
+            // _db.Entry(userprofile).State = EntityState.Modified;
+            _db.SaveChanges();
+        }
     }
 }

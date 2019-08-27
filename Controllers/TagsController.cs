@@ -23,7 +23,10 @@ namespace Circles_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Tag>> GetAll()
         {
-            return _db.Tags.OrderBy(x => x.Name).ToList();
+            return _db.Tags
+                .Include(x => x.Userprofiles)
+                .ThenInclude(join => join.Userprofile)
+                .OrderBy(x => x.Name).ToList();
         }
 
         // GET api/tags/first (first page)
@@ -78,6 +81,7 @@ namespace Circles_API.Controllers
         {
             return _db.Tags
                 .Include(x => x.Userprofiles)
+                .ThenInclude(join => join.Userprofile)
                 .FirstOrDefault(x => x.TagId == id);
         }
 

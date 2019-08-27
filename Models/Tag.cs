@@ -12,6 +12,6 @@ namespace Circles_API.Models
         public int TagId { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Userprofile> Userprofiles { get; set; }
+        public ICollection<TagUserprofile> Userprofiles { get; set; }
     }
 }

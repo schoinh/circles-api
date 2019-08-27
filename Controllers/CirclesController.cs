@@ -23,7 +23,10 @@ namespace Circles_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Circle>> GetAll()
         {
-            return _db.Circles.OrderBy(x => x.Name).ToList();
+            return _db.Circles
+                .Include(x => x.Userprofiles)
+                .ThenInclude(join => join.Userprofile)
+                .OrderBy(x => x.Name).ToList();
         }
 
         // GET api/circles/first (first page)
@@ -108,8 +111,8 @@ namespace Circles_API.Controllers
             _db.SaveChanges();
         }
 
-        // POST api/circles/1/adduser/3
-        [HttpPost("{circleId}/adduser/{userprofileId}")]
+        // POST api/circles/1/userprofiles/3
+        [HttpPost("{circleId}/userprofiles/{userprofileId}")]
         public void AddUserprofile(int circleId, int userprofileId)
         {
             _db.CircleUserprofiles.Add(new CircleUserprofile() { CircleId = circleId, UserprofileId = userprofileId });

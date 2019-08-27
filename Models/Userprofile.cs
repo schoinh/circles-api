@@ -17,7 +17,7 @@ namespace Circles_API.Models
         public string Photo { get; set; }
         public string Location { get; set; }
 
-        public ICollection<TagUserprofile> Tags { get; set; }
+        // public ICollection<TagUserprofile> Tags { get; set; }
         // public virtual ICollection<CircleUserprofile> Circles { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

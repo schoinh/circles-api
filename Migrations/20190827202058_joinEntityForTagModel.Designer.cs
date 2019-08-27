@@ -3,14 +3,16 @@ using System;
 using Circles_API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Circles_API.Migrations
 {
     [DbContext(typeof(Circles_APIContext))]
-    partial class Circles_APIContextModelSnapshot : ModelSnapshot
+    [Migration("20190827202058_joinEntityForTagModel")]
+    partial class joinEntityForTagModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,7 +294,7 @@ namespace Circles_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Circles_API.Models.Userprofile", "Userprofile")
-                        .WithMany()
+                        .WithMany("Tags")
                         .HasForeignKey("UserprofileId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
