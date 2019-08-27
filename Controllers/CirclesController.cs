@@ -76,7 +76,21 @@ namespace Circles_API.Controllers
         [HttpGet("{id}")]
         public ActionResult<Circle> Get(int id)
         {
-            return _db.Circles.FirstOrDefault(x => x.CircleId == id);
+            
+            var circle = _db.Circles
+                .Include(x => x.Userprofiles)
+                .ThenInclude(join => join.Userprofile)
+                .FirstOrDefault(x => x.CircleId == id);
+
+            for(int i = 0; i < 15; i++)
+            {
+            Console.WriteLine(circle.Userprofiles.ToList()[0].Userprofile.Name);
+            Console.WriteLine(circle);
+            }
+            return _db.Circles
+                .Include(x => x.Userprofiles)
+                .ThenInclude(join => join.Userprofile)
+                .FirstOrDefault(x => x.CircleId == id);
         }
 
         // POST api/circles
@@ -102,6 +116,16 @@ namespace Circles_API.Controllers
         {
             var circleToDelete = _db.Circles.FirstOrDefault(x => x.CircleId == id);
             _db.Circles.Remove(circleToDelete);
+            _db.SaveChanges();
+        }
+
+        // POST api/circles/adduserprofile
+        [HttpPost("adduserprofile/{userprofileId}/{circleId}")]
+        public void AddUserprofile(int userprofileId, int circleId)
+        {
+            _db.CircleUserprofiles.Add(new CircleUserprofile() { CircleId = circleId, UserprofileId = userprofileId });
+            //var circleToModify = _db.Userprofiles.Where(x => x.UserprofileId == userprofileId);
+            // _db.Entry(userprofile).State = EntityState.Modified;
             _db.SaveChanges();
         }
     }
