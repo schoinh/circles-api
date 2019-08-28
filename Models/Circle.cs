@@ -14,6 +14,6 @@ namespace Circles_API.Models
         // public string UserprofileId { get; set; }
 
         public ICollection<CircleUserprofile> Userprofiles { get; set; }
-        public virtual ApplicationUser Creator { get; set; }
+        // public virtual ApplicationUser Creator { get; set; }
     }
 }

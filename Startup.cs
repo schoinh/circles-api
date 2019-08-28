@@ -31,10 +31,6 @@ namespace Circles_API
             services
                 .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<Circles_APIContext>()
-                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +46,7 @@ namespace Circles_API
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
+     
             // app.UseHttpsRedirection();
             app.UseMvc();
         }

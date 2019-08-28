@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Circles_API.Models
 {
-    public class Circles_APIContext : IdentityDbContext<ApplicationUser>
+    public class Circles_APIContext : DbContext
     {
         public DbSet<Circle> Circles { get; set; }
         public DbSet<Userprofile> Userprofiles { get; set; }
