@@ -115,10 +115,14 @@ namespace Circles_API.Controllers
         [HttpPost("{circleId}/userprofiles/{userprofileId}")]
         public void AddUserprofile(int circleId, int userprofileId)
         {
-            _db.CircleUserprofiles.Add(new CircleUserprofile() { CircleId = circleId, UserprofileId = userprofileId });
-            //var circleToModify = _db.Userprofiles.Where(x => x.UserprofileId == userprofileId);
-            // _db.Entry(userprofile).State = EntityState.Modified;
-            _db.SaveChanges();
+            var possibleDuplicates = _db.CircleUserprofiles
+                .Where(x => x.CircleId == circleId)
+                .Where(x => x.UserprofileId == userprofileId).ToList();
+            if (possibleDuplicates.Count() == 0)
+            {
+                _db.CircleUserprofiles.Add(new CircleUserprofile() { CircleId = circleId, UserprofileId = userprofileId });
+                _db.SaveChanges();
+            }
         }
     }
 }
