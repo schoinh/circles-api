@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Circles_API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class SEJfhnSKHRgzkldjfg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +12,7 @@ namespace Circles_API.Migrations
                 columns: table => new
                 {
                     CircleId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
@@ -25,7 +26,7 @@ namespace Circles_API.Migrations
                 columns: table => new
                 {
                     TagId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -38,7 +39,7 @@ namespace Circles_API.Migrations
                 columns: table => new
                 {
                     UserprofileId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Gender = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
@@ -57,7 +58,7 @@ namespace Circles_API.Migrations
                 columns: table => new
                 {
                     CircleUserprofileId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CircleId = table.Column<int>(nullable: false),
                     UserprofileId = table.Column<int>(nullable: false)
                 },
@@ -83,7 +84,7 @@ namespace Circles_API.Migrations
                 columns: table => new
                 {
                     TagUserprofileId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TagId = table.Column<int>(nullable: false),
                     UserprofileId = table.Column<int>(nullable: false)
                 },

@@ -11,7 +11,7 @@ namespace Circles_API.Controllers
     [ApiController]
     public class UserprofilesController : ControllerBase
     {
-        private Circles_APIContext _db;
+        private Circles_APIContext _db = new Circles_APIContext();
         private static int _currentPage = 1;    // Must be 1
         private static int _entriesPerPage = 4;     // This can be changed
         private static int _totalNumEntries;
@@ -19,11 +19,6 @@ namespace Circles_API.Controllers
         private static int _prevPage;
         private static int _nextPage;
 
-
-        public UserprofilesController(Circles_APIContext db)
-        {
-            _db = db;
-        }
         // GET api/userprofiles
         [HttpGet]
         public ActionResult<IEnumerable<Userprofile>> GetAll()

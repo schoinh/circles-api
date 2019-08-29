@@ -11,12 +11,7 @@ namespace Circles_API.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        private Circles_APIContext _db;
-
-         public TagsController(Circles_APIContext db)
-        {
-            _db = db;
-        }
+        private Circles_APIContext _db = new Circles_APIContext();
 
         // GET api/tags
         [HttpGet]

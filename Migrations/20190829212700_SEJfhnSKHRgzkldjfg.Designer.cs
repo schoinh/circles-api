@@ -8,14 +8,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Circles_API.Migrations
 {
     [DbContext(typeof(Circles_APIContext))]
-    [Migration("20190829003338_Initial")]
-    partial class Initial
+    [Migration("20190829212700_SEJfhnSKHRgzkldjfg")]
+    partial class SEJfhnSKHRgzkldjfg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Circles_API.Models.Circle", b =>
                 {
