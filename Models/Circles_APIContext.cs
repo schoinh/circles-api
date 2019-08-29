@@ -11,14 +11,11 @@ namespace Circles_API.Models
         public DbSet<CircleUserprofile> CircleUserprofiles { get; set; }
         public DbSet<TagUserprofile> TagUserprofiles { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder
-                .UseMySql(@"server=localhost;user id=root;password=epicodus;port=3306;database=circles;");
-
-        public Circles_APIContext(DbContextOptions options) : base(options)
+        public Circles_APIContext(DbContextOptions<Circles_APIContext> options)
+            : base(options)
         {
-
         }
+
         public Circles_APIContext()
         {
 
