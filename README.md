@@ -14,18 +14,13 @@ This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_M
     ```
     $ git clone https://github.com/schoinh/circles-api.git
     ```
-2. Navigate to the project directory (Animal-API). Restore dependencies, update the local database, and run the API:
+2. Navigate to the project directory (Circles-API). Restore dependencies, update the local database, and run the API:
     ```
     $ dotnet restore
     $ dotnet ef database update
     $ dotnet run
     ```
 7. The API is now up and running.
-
-### **Example Call**
-```
-http://localhost:5000/api/animals?species=Cat&gender=Male
-```
 
 ## Known Bugs
 None at this time.
