@@ -6,7 +6,7 @@
 
 ## Description
 
-This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_MVC). For full schema, please refer to the [Swagger documentation](http://github.com/schoinh/circles-api). 
+This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_MVC). For full schema, please refer to the Swagger documentation (installation instructions below). 
 
 ## Setup/Installation Requirements
 
@@ -20,7 +20,7 @@ This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_M
     $ dotnet ef database update
     $ dotnet run
     ```
-7. The API is now up and running.
+7. The API is now up and running. For full schema, navigate to the Swagger documentation at http://localhost:5001.
 
 ## Known Bugs
 None at this time.
@@ -34,7 +34,7 @@ None at this time.
 
 ## Support and contact details
 
-_Please comment if you have feedback._
+_Please comment below if you have feedback._
 
 ### License
 
