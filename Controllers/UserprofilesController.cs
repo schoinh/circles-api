@@ -13,7 +13,7 @@ namespace Circles_API.Controllers
     {
         private Circles_APIContext _db = new Circles_APIContext();
         private static int _currentPage = 1;    // Must be 1
-        private static int _entriesPerPage = 2;     // This can be changed
+        private static int _entriesPerPage = 4;     // This can be changed
         private static int _totalNumEntries;
         private static int _totalPages;
         private static int _prevPage;
@@ -28,7 +28,7 @@ namespace Circles_API.Controllers
             {
                 _currentPage = 1;
                 var allResults = _db.Userprofiles.ToList();
-                _totalNumEntries = allResults.Count();
+                _totalNumEntries = allResults.Count() - 1;
                 _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .OrderBy(x => x.Name)
@@ -38,7 +38,7 @@ namespace Circles_API.Controllers
             {
                 _currentPage = 1;
                 var allResults = _db.Userprofiles.Where(x => x.Location == location).ToList();
-                _totalNumEntries = allResults.Count();
+                _totalNumEntries = allResults.Count() - 1;
                 _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .Where(x => x.Location == location)
@@ -49,7 +49,7 @@ namespace Circles_API.Controllers
             {
                 _currentPage = 1;
                 var allResults = _db.Userprofiles.Where(x => x.Gender == gender).ToList();
-                _totalNumEntries = allResults.Count();
+                _totalNumEntries = allResults.Count() - 1;
                 _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .Where(x => x.Gender == gender)
@@ -62,7 +62,7 @@ namespace Circles_API.Controllers
                 var allResults = _db.Userprofiles
                     .Where(x => x.Gender == gender)
                     .Where(x => x.Location == location).ToList();
-                _totalNumEntries = allResults.Count();
+                _totalNumEntries = allResults.Count() - 1;
                 _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
                 return _db.Userprofiles
                     .Where(x => x.Gender == gender)
