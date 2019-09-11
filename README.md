@@ -8,11 +8,8 @@
 
 This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_MVC). For full schema, please refer to the Swagger documentation (installation instructions below). 
 
-Circles MVC app (Azure hosted version):
-https://github.com/ejordan1/CirclesMVCAzure
-
-Circles Web API (Azure hosted version):
-https://github.com/ejordan1/CirclesApiAzure
+* Circles MVC app (Azure hosted version): https://github.com/ejordan1/CirclesMVCAzure
+* Circles Web API (Azure hosted version): https://github.com/ejordan1/CirclesApiAzure
 
 ## Setup/Installation Requirements
 
