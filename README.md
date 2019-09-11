@@ -1,12 +1,18 @@
-# Circles API
+# Circles Web API
 
-#### _An API for the Circles app - August 23, 2019_
+#### _A Web API for the Circles app - August 23, 2019_
 
 #### _By **Na Hyung Choi, Kelar Crisp, Erik Irgens, and Emerson Jordan**_
 
 ## Description
 
 This API is used by the [Circles app](https://github.com/erik-t-irgens/CIRCLES_MVC). For full schema, please refer to the Swagger documentation (installation instructions below). 
+
+Circles MVC app (Azure hosted version):
+https://github.com/ejordan1/CirclesMVCAzure
+
+Circles Web API (Azure hosted version):
+https://github.com/ejordan1/CirclesApiAzure
 
 ## Setup/Installation Requirements
 
