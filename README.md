@@ -6,9 +6,11 @@
 
 ## Description
 
-This API is used by the [Circles app](https://circlesapp.azurewebsites.net)(https://circlesapp.azurewebsites.net). For full schema, please refer to the Swagger documentation (installation instructions below). 
+This API is used by the Circles app (https://circlesapp.azurewebsites.net). For full schema, please refer to the Swagger documentation (installation instructions below). 
 
-* Circles MVC app (local database version): https://github.com/erik-t-irgens/CIRCLES_MVC
+#### Related GitHub Repositories
+
+* Circles MVC app (local database version, contains readme for the app): https://github.com/erik-t-irgens/CIRCLES_MVC
 * Circles MVC app (Azure hosted version): https://github.com/ejordan1/CirclesMVCAzure
 * Circles Web API (Azure hosted version): https://github.com/ejordan1/CirclesApiAzure
 
