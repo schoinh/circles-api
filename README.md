@@ -26,7 +26,7 @@ This is the local database version of the Web API used by the Circles app (https
     $ dotnet ef database update
     $ dotnet run
     ```
-7. The API is now up and running. For full schema, navigate to the Swagger documentation at http://localhost:5001.
+3. The API is now up and running. For full schema, navigate to the Swagger documentation at http://localhost:5001.
 
 ## Known Bugs
 None at this time.
