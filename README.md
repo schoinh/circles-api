@@ -6,7 +6,7 @@
 
 ## Description
 
-This API is used by the Circles app (https://circlesapp.azurewebsites.net). For full schema, please refer to the Swagger documentation (installation instructions below). 
+This is the local database version of the Web API used by the Circles app (https://circlesapp.azurewebsites.net). For full schema, please refer to the Swagger documentation (installation instructions below). 
 
 #### Related GitHub Repositories
 
