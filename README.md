@@ -10,7 +10,7 @@ This is the local database version of the Web API used by the Circles app (https
 
 #### Related GitHub Repositories
 
-* Circles MVC app (local database version, contains readme for the app): https://github.com/erik-t-irgens/CIRCLES_MVC
+* Circles MVC app (local database version): https://github.com/erik-t-irgens/CIRCLES_MVC
 * Circles MVC app (Azure hosted version): https://github.com/ejordan1/CirclesMVCAzure
 * Circles Web API (Azure hosted version): https://github.com/ejordan1/CirclesApiAzure
 
